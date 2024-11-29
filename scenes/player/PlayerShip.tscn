@@ -15,7 +15,6 @@ position = Vector2(0, -2)
 shape = SubResource("CapsuleShape2D_dejik")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture_filter = 1
 texture = ExtResource("2_x6ois")
 hframes = 4
 vframes = 5
