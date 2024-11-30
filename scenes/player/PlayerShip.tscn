@@ -1,11 +1,157 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddk1y16tdbvk3"]
+[gd_scene load_steps=18 format=3 uid="uid://ddk1y16tdbvk3"]
 
 [ext_resource type="Script" path="res://scenes/player/player_ship.gd" id="1_nyyk3"]
 [ext_resource type="Texture2D" uid="uid://dipeupfkh52x4" path="res://assets/sprites/player/player_ship.png" id="2_x6ois"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dejik"]
-radius = 5.0
+radius = 4.0
 height = 20.0
+
+[sub_resource type="Animation" id="Animation_pjv4m"]
+resource_name = "Player Idle"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_mpe2l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+
+[sub_resource type="Animation" id="Animation_80754"]
+resource_name = "Player Light Left"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_xaar0"]
+resource_name = "Player Deep Left"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_j4v8q"]
+resource_name = "Player Light Right"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15]
+}
+
+[sub_resource type="Animation" id="Animation_f12u1"]
+resource_name = "Player Deep Right"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [16, 17, 18, 19]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_54jkg"]
+_data = {
+"Player Deep Left": SubResource("Animation_xaar0"),
+"Player Deep Right": SubResource("Animation_f12u1"),
+"Player Idle": SubResource("Animation_pjv4m"),
+"Player Light Left": SubResource("Animation_80754"),
+"Player Light Right": SubResource("Animation_j4v8q"),
+"RESET": SubResource("Animation_mpe2l")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_erb4p"]
+animation = &"Player Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vv3y8"]
+animation = &"Player Light Right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_75q5q"]
+animation = &"Player Deep Right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xqcjf"]
+animation = &"Player Light Left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1a873"]
+animation = &"Player Deep Left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cb4yd"]
+animation = &"Player Idle"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_fg1e4"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_erb4p")
+blend_point_0/pos = -10.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_vv3y8")
+blend_point_1/pos = 20.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_75q5q")
+blend_point_2/pos = 75.0
+blend_point_3/node = SubResource("AnimationNodeAnimation_xqcjf")
+blend_point_3/pos = -20.0
+blend_point_4/node = SubResource("AnimationNodeAnimation_1a873")
+blend_point_4/pos = -75.0
+blend_point_5/node = SubResource("AnimationNodeAnimation_cb4yd")
+blend_point_5/pos = 10.0
+min_space = -100.0
+max_space = 100.0
+snap = 5.0
+blend_mode = 1
 
 [node name="PlayerShip" type="CharacterBody2D"]
 script = ExtResource("1_nyyk3")
@@ -19,3 +165,13 @@ texture = ExtResource("2_x6ois")
 hframes = 4
 vframes = 5
 frame = 10
+
+[node name="Animations" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_54jkg")
+}
+
+[node name="AnimTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendSpace1D_fg1e4")
+anim_player = NodePath("../Animations")
+parameters/blend_position = -0.00447762
