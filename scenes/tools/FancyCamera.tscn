@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2ge0qveg4hbt"]
+
+[ext_resource type="Script" path="res://scenes/tools/fancy_camera.gd" id="1_j04mh"]
+
+[node name="FancyCamera" type="Node2D"]
+script = ExtResource("1_j04mh")
+
+[node name="Camera2D" type="Camera2D" parent="."]

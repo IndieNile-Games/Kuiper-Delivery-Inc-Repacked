@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://cuffrun4wne3i"]
+[gd_scene load_steps=3 format=3 uid="uid://cuffrun4wne3i"]
 
+[ext_resource type="PackedScene" uid="uid://d2ge0qveg4hbt" path="res://scenes/tools/FancyCamera.tscn" id="1_0x3v1"]
 [ext_resource type="PackedScene" uid="uid://ddk1y16tdbvk3" path="res://scenes/player/PlayerShip.tscn" id="1_1rjdc"]
 
 [node name="Root" type="Node2D"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-2, 0)
+[node name="FancyCamera" parent="." node_paths=PackedStringArray("tracking") instance=ExtResource("1_0x3v1")]
+position = Vector2(0, -30)
+tracking = NodePath("../PlayerShip")
 
 [node name="PlayerShip" parent="." instance=ExtResource("1_1rjdc")]
 position = Vector2(0, 1)
