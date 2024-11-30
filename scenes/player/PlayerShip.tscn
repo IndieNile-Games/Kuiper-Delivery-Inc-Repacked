@@ -1,11 +1,73 @@
-[gd_scene load_steps=18 format=3 uid="uid://ddk1y16tdbvk3"]
+[gd_scene load_steps=22 format=3 uid="uid://ddk1y16tdbvk3"]
 
 [ext_resource type="Script" path="res://scenes/player/player_ship.gd" id="1_nyyk3"]
+[ext_resource type="Texture2D" uid="uid://di73s0yqocvr3" path="res://assets/sprites/attacks/muzzle_flash.png" id="2_4doiu"]
 [ext_resource type="Texture2D" uid="uid://dipeupfkh52x4" path="res://assets/sprites/player/player_ship.png" id="2_x6ois"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dejik"]
 radius = 4.0
 height = 20.0
+
+[sub_resource type="Animation" id="Animation_js454"]
+resource_name = "Fire Weapon"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_qvios"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h6d0i"]
+_data = {
+"Fire Weapon": SubResource("Animation_js454"),
+"RESET": SubResource("Animation_qvios")
+}
 
 [sub_resource type="Animation" id="Animation_pjv4m"]
 resource_name = "Player Idle"
@@ -14,7 +76,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprites/ShipBody:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -29,7 +91,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprites/ShipBody:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -46,7 +108,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprites/ShipBody:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -63,7 +125,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprites/ShipBody:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -80,7 +142,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprites/ShipBody:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -97,7 +159,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprites/ShipBody:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -160,18 +222,37 @@ script = ExtResource("1_nyyk3")
 position = Vector2(0, -2)
 shape = SubResource("CapsuleShape2D_dejik")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprites" type="Node2D" parent="."]
+position = Vector2(1, -20)
+rotation = -1.5708
+
+[node name="MuzzleFlash" type="Sprite2D" parent="Sprites"]
+visible = false
+position = Vector2(-1, -4.37114e-08)
+texture = ExtResource("2_4doiu")
+hframes = 2
+vframes = 3
+
+[node name="Animations" type="AnimationPlayer" parent="Sprites/MuzzleFlash"]
+libraries = {
+"": SubResource("AnimationLibrary_h6d0i")
+}
+
+[node name="ShipBody" type="Sprite2D" parent="Sprites"]
+position = Vector2(-20, -1)
+rotation = 1.5708
 texture = ExtResource("2_x6ois")
 hframes = 4
 vframes = 5
 frame = 10
 
-[node name="Animations" type="AnimationPlayer" parent="."]
+[node name="Animations" type="AnimationPlayer" parent="Sprites/ShipBody"]
+root_node = NodePath("../../..")
 libraries = {
 "": SubResource("AnimationLibrary_54jkg")
 }
 
 [node name="AnimTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeBlendSpace1D_fg1e4")
-anim_player = NodePath("../Animations")
+anim_player = NodePath("../Sprites/ShipBody/Animations")
 parameters/blend_position = -0.00447762
