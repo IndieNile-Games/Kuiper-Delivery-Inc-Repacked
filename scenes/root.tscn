@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cuffrun4wne3i"]
+[gd_scene load_steps=4 format=3 uid="uid://cuffrun4wne3i"]
 
 [ext_resource type="PackedScene" uid="uid://d2ge0qveg4hbt" path="res://scenes/tools/FancyCamera.tscn" id="1_0x3v1"]
 [ext_resource type="PackedScene" uid="uid://ddk1y16tdbvk3" path="res://scenes/player/PlayerShip.tscn" id="1_1rjdc"]
+[ext_resource type="Texture2D" uid="uid://doekxfn1k5g51" path="res://assets/background.png" id="1_rdo5i"]
 
 [node name="Root" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.0483875, -146.5)
+scale = Vector2(0.600242, 1.72083)
+texture = ExtResource("1_rdo5i")
 
 [node name="FancyCamera" parent="." node_paths=PackedStringArray("tracking") instance=ExtResource("1_0x3v1")]
 position = Vector2(0, -30)
