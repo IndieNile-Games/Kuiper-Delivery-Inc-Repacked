@@ -11,6 +11,11 @@ config_version=5
 [application]
 
 config/name="Kuiper Delivery Incorporated [Repacked]"
+config/name_localized={
+"en": "Kuiper Delivery Incorporated [Repacked]"
+}
+config/description="Imagine if IndieNile Games got a LOW TAPER FADE."
+config/version="1.0.0"
 run/main_scene="res://scenes/root.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
