@@ -16,4 +16,4 @@ position = Vector2(0, -30)
 tracking = NodePath("../PlayerShip")
 
 [node name="PlayerShip" parent="." instance=ExtResource("1_1rjdc")]
-position = Vector2(0, 1)
+position = Vector2(0, 22)

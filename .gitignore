@@ -19,3 +19,4 @@ mono_crash.*.json
 
 # Personal Development Environment
 /.vscode
+addons/godot-git-plugin/win64/~libgit_plugin.windows.editor.x86_64.dll

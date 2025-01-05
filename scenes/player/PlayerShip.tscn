@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://ddk1y16tdbvk3"]
+[gd_scene load_steps=37 format=3 uid="uid://ddk1y16tdbvk3"]
 
 [ext_resource type="Script" path="res://scenes/player/player_ship.gd" id="1_nyyk3"]
 [ext_resource type="Texture2D" uid="uid://di73s0yqocvr3" path="res://assets/sprites/attacks/muzzle_flash.png" id="2_4doiu"]
+[ext_resource type="PackedScene" uid="uid://ckigxq6o6x16o" path="res://scenes/player/FunnyBullet.tscn" id="2_imtj2"]
 [ext_resource type="Texture2D" uid="uid://dipeupfkh52x4" path="res://assets/sprites/player/player_ship.png" id="2_x6ois"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dejik"]
@@ -69,6 +70,40 @@ _data = {
 "RESET": SubResource("Animation_qvios")
 }
 
+[sub_resource type="Animation" id="Animation_xaar0"]
+resource_name = "Player Deep Left"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/ShipBody:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_f12u1"]
+resource_name = "Player Deep Right"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/ShipBody:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [16, 17, 18, 19]
+}
+
 [sub_resource type="Animation" id="Animation_pjv4m"]
 resource_name = "Player Idle"
 length = 0.2
@@ -84,21 +119,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [8, 9, 10, 11]
-}
-
-[sub_resource type="Animation" id="Animation_mpe2l"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprites/ShipBody:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [10]
 }
 
 [sub_resource type="Animation" id="Animation_80754"]
@@ -118,23 +138,6 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3]
 }
 
-[sub_resource type="Animation" id="Animation_xaar0"]
-resource_name = "Player Deep Left"
-length = 0.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprites/ShipBody:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [4, 5, 6, 7]
-}
-
 [sub_resource type="Animation" id="Animation_j4v8q"]
 resource_name = "Player Light Right"
 length = 0.2
@@ -152,10 +155,8 @@ tracks/0/keys = {
 "values": [12, 13, 14, 15]
 }
 
-[sub_resource type="Animation" id="Animation_f12u1"]
-resource_name = "Player Deep Right"
-length = 0.2
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_mpe2l"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -163,10 +164,10 @@ tracks/0/path = NodePath("Sprites/ShipBody:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [16, 17, 18, 19]
+"values": [10]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_54jkg"]
@@ -215,8 +216,222 @@ max_space = 100.0
 snap = 5.0
 blend_mode = 1
 
+[sub_resource type="Animation" id="Animation_cmr6u"]
+resource_name = "PlayerIdle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -8)]
+}
+
+[sub_resource type="Animation" id="Animation_f5olr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -8)]
+}
+
+[sub_resource type="Animation" id="Animation_g23n2"]
+resource_name = "PlayerLightLeft"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.122173]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, -8)]
+}
+
+[sub_resource type="Animation" id="Animation_vuh17"]
+resource_name = "PlayerLightRight"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.122173]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, -8)]
+}
+
+[sub_resource type="Animation" id="Animation_iwc4t"]
+resource_name = "PlayerDeepLeft"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.226893]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, -8)]
+}
+
+[sub_resource type="Animation" id="Animation_nfobf"]
+resource_name = "PlayerDeepRight"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.226893]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, -8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x76qu"]
+_data = {
+"PlayerDeepLeft": SubResource("Animation_iwc4t"),
+"PlayerDeepRight": SubResource("Animation_nfobf"),
+"PlayerIdle": SubResource("Animation_cmr6u"),
+"PlayerLightLeft": SubResource("Animation_g23n2"),
+"PlayerLightRight": SubResource("Animation_vuh17"),
+"RESET": SubResource("Animation_f5olr")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e7gov"]
+animation = &"PlayerIdle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8hnkf"]
+animation = &"PlayerIdle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yipi5"]
+animation = &"PlayerLightLeft"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8vq3b"]
+animation = &"PlayerDeepLeft"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wvu3q"]
+animation = &"PlayerDeepRight"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uabv2"]
+animation = &"PlayerLightRight"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_qoo2h"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_e7gov")
+blend_point_0/pos = 10.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_8hnkf")
+blend_point_1/pos = -10.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_yipi5")
+blend_point_2/pos = -20.0
+blend_point_3/node = SubResource("AnimationNodeAnimation_8vq3b")
+blend_point_3/pos = -75.0
+blend_point_4/node = SubResource("AnimationNodeAnimation_wvu3q")
+blend_point_4/pos = 75.0
+blend_point_5/node = SubResource("AnimationNodeAnimation_uabv2")
+blend_point_5/pos = 20.0
+min_space = -100.0
+max_space = 100.0
+snap = 5.0
+blend_mode = 1
+
 [node name="PlayerShip" type="CharacterBody2D"]
+z_index = 1
 script = ExtResource("1_nyyk3")
+Bullet = ExtResource("2_imtj2")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
@@ -252,7 +467,28 @@ libraries = {
 "": SubResource("AnimationLibrary_54jkg")
 }
 
-[node name="AnimTree" type="AnimationTree" parent="."]
+[node name="Tree" type="AnimationTree" parent="Sprites/ShipBody"]
+root_node = NodePath("../../..")
 tree_root = SubResource("AnimationNodeBlendSpace1D_fg1e4")
-anim_player = NodePath("../Sprites/ShipBody/Animations")
-parameters/blend_position = -0.00447762
+anim_player = NodePath("../Animations")
+parameters/blend_position = -10.0
+
+[node name="Muzzle" type="Node2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="Left" type="Marker2D" parent="Muzzle"]
+position = Vector2(-7, 8)
+
+[node name="Right" type="Marker2D" parent="Muzzle"]
+position = Vector2(7, 8)
+
+[node name="Animator" type="AnimationPlayer" parent="Muzzle"]
+libraries = {
+"": SubResource("AnimationLibrary_x76qu")
+}
+
+[node name="Tree" type="AnimationTree" parent="Muzzle/Animator"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeBlendSpace1D_qoo2h")
+anim_player = NodePath("..")
+parameters/blend_position = 0
